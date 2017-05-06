@@ -1,0 +1,25 @@
+{
+  "name": "mymapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmakoff/myMappApp.git"
+  },
+  "author": "Makov Yuriy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmakoff/myMappApp/issues"
+  },
+  "homepage": "https://github.com/jmakoff/myMappApp#readme",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-leaflet-directive": "^0.10.0",
+    "bootstrap": "^3.3.7",
+    "leaflet": "^1.0.3"
+  }
+}
