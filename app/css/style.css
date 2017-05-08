@@ -14,3 +14,9 @@ th{
 td{
     vertical-align: middle !important;
 }
+.myLine{
+    opacity: 0.5;
+    stroke-width: 5;
+    stroke: black;
+    stroke-dasharray:5, 5;
+}

@@ -9,7 +9,8 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
         paths: {p1:{
             latlngs:[],
             type: 'polyline',
-            color: 'red'
+            className: 'myLine'
+
         }},
         defaults: {
             /*tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",*/
@@ -50,7 +51,7 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
             lat: leafEvent.latlng.lat,
             lng: leafEvent.latlng.lng,
             message: "this marker lat:"+leafEvent.latlng.lat+"; lng: "+ leafEvent.latlng.lng,
-            draggable: true,
+            draggable: true
         });
         console.dir($scope.markers);
      $scope.paths.p1.latlngs.push({ lat: leafEvent.latlng.lat, lng: leafEvent.latlng.lng}) // adding paths
@@ -95,6 +96,7 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
         (function changeMarkerNum() {               //changing numbers of all markers more then deleted
             for(i=index; i<$scope.markers.length; ++i){
                 $scope.markers[i].icon.html=$scope.markers[i].icon.html-1;
+
             }
         })()
     }
