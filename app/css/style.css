@@ -1,4 +1,16 @@
 .map{
     height: 500px;
-    width: 600px;
+    width: 1000px;
+}
+.myTable{
+    padding-top: 5px;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+th{
+    text-align: center;
+}
+td{
+    vertical-align: middle !important;
 }

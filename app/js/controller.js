@@ -52,6 +52,7 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
             message: "this marker lat:"+leafEvent.latlng.lat+"; lng: "+ leafEvent.latlng.lng,
             draggable: true,
         });
+        console.dir($scope.markers);
      $scope.paths.p1.latlngs.push({ lat: leafEvent.latlng.lat, lng: leafEvent.latlng.lng}) // adding paths
         console.log($scope.paths);
     });
@@ -83,8 +84,18 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
             $scope.ip = res.data.ip;
             $scope.region_name = res.data.region_name;
             $scope.country = res.data.country_name;
-
         });
     };
     $scope.searchIP();
-}])
+
+    $scope.deleteMarker=function (index) {
+        console.log("deleted marker with index "+ index);
+        $scope.markers.splice(index, 1);            //deleting marker
+        $scope.paths.p1.latlngs.splice(index, 1);   //deleting path
+        (function changeMarkerNum() {               //changing numbers of all markers more then deleted
+            for(i=index; i<$scope.markers.length; ++i){
+                $scope.markers[i].icon.html=$scope.markers[i].icon.html-1;
+            }
+        })()
+    }
+}]);
