@@ -85,5 +85,8 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
             }
         })()
     };
+    $scope.showTable = function () {                 //hiding table with data about markers if there no markers
+        return $scope.markers.length>0
+    }
 
 }]);
