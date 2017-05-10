@@ -13,27 +13,18 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
 
         }},
         defaults: {
-            /*tileLayer: "http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",*/
             tileLayerOptions: {
                 opacity: 0.9,
                 detectRetina: true,
-                reuseTiles: true,
+                reuseTiles: true
             },
             scrollWheelZoom: true,
             doubleClickZoom: false
 
         },
-        events: { // or just {} //all events
-/*             markers:{
-             enable: [ 'dragend' ]
-             //logic: 'emit'
-             },
-             map:{
-
-             }*/
-        }
+        events: {}
     });
-    $scope.markers = new Array();
+    $scope.markers = [];
 
 
 
@@ -50,27 +41,23 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
             },
             lat: leafEvent.latlng.lat,
             lng: leafEvent.latlng.lng,
-            message: "this marker lat:"+leafEvent.latlng.lat+"; lng: "+ leafEvent.latlng.lng,
+            message: "This marker latitude:"+leafEvent.latlng.lat+"; length: "+ leafEvent.latlng.lng,
             draggable: true
         });
         console.dir($scope.markers);
-     $scope.paths.p1.latlngs.push({ lat: leafEvent.latlng.lat, lng: leafEvent.latlng.lng}) // adding paths
+     $scope.paths.p1.latlngs.push({ lat: leafEvent.latlng.lat, lng: leafEvent.latlng.lng}); // adding paths
         console.log($scope.paths);
     });
     $scope.$on("leafletDirectiveMarker.dragend", function(event, args){
         console.dir( args);
-        (function () {                                                  // correcting paths here
+        (function () {                                                  // correcting data after drag
             $scope.paths.p1.latlngs[args.modelName]=[args.model.lat, args.model.lng];
-            $scope.markers[args.modelName].message= 'new custom message';
+            $scope.markers[args.modelName].message = "This marker latitude:"+args.model.lat+"; length: "+ args.model.lng;
             $scope.markers[args.modelName].lat = args.model.lat;
             $scope.markers[args.modelName].lng = args.model.lng;
             console.log('args.modelName: '+ args.modelName)
         })();
-
-
         console.log($scope.paths.p1.latlngs);
-
-
     });
 
     $scope.searchIP = function() { // setting center by user's IP
@@ -88,16 +75,15 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
         });
     };
     $scope.searchIP();
-
-    $scope.deleteMarker=function (index) {
+    $scope.deleteMarker = function (index) {
         console.log("deleted marker with index "+ index);
         $scope.markers.splice(index, 1);            //deleting marker
         $scope.paths.p1.latlngs.splice(index, 1);   //deleting path
         (function changeMarkerNum() {               //changing numbers of all markers more then deleted
-            for(i=index; i<$scope.markers.length; ++i){
+            for(var i=index; i<$scope.markers.length; ++i){
                 $scope.markers[i].icon.html=$scope.markers[i].icon.html-1;
-
             }
         })()
-    }
+    };
+
 }]);

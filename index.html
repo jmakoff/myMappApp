@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="numberedMarkers/leaflet_numbered_markers.css">
 
 
-
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/leaflet/dist/leaflet-src.js"></script>
     <script src="node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
@@ -25,25 +24,31 @@
 <body ng-controller="mainCtrl">
 <h1 class="text-center">Hello, it's Yuriy Makov's test work!</h1>
 <leaflet class="map center-block" lf-center="center" defaults="defaults" event-broadcast="events"
-         markers="markers" paths="paths" ></leaflet>
+         markers="markers" paths="paths"></leaflet>
 <div class="myTable">
-<table class="table table-bordered">
-    <thead>
-    <tr class="text-center">
-        <th>Marker`s Number</th><th>Marker`s latitude</th><th>Marker`s length</th><th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="marker in markers track by $index" class="tableText">
-        <td >{{$index+1}}</td><td>{{marker.lat}}</td><td>{{marker.lng}}</td>
-        <td><button class="btn btn-danger"><span class="glyphicon glyphicon-remove" ng-click="deleteMarker($index)"></span></button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <table class="table table-bordered">
+        <thead>
+        <tr class="text-center">
+            <th>Marker`s Number</th>
+            <th>Marker`s latitude</th>
+            <th>Marker`s length</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="marker in markers track by $index" class="tableText">
+            <td>{{$index+1}}</td>
+            <td>{{marker.lat}}</td>
+            <td>{{marker.lng}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteMarker($index)"><span
+                        class="glyphicon glyphicon-remove"></span></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <h3 class="text-center">Text centered by ip: {{ip}}</h3>
-
 <h5 class="text-center">Country: {{country}}, Region name: {{region_name}}</h5>
 </body>
 </html>
