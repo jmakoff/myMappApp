@@ -44,9 +44,9 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
             message: "This marker latitude:"+leafEvent.latlng.lat+"; length: "+ leafEvent.latlng.lng,
             draggable: true
         });
-        console.dir($scope.markers);
+       /* console.dir($scope.markers);*/ //used for debug
      $scope.paths.p1.latlngs.push({ lat: leafEvent.latlng.lat, lng: leafEvent.latlng.lng}); // adding paths
-        console.log($scope.paths);
+       /* console.log($scope.paths);*/
     });
     $scope.$on("leafletDirectiveMarker.dragend", function(event, args){
         console.dir( args);
@@ -67,8 +67,8 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
                 lng: res.data.longitude,
                 zoom: 10
             };
-            console.log(' res.longitude: ' + res.data.longitude);
-            console.log('Ip ' + res.data.ip);
+            /*console.log(' res.longitude: ' + res.data.longitude);
+            console.log('Ip ' + res.data.ip);*/
             $scope.ip = res.data.ip;
             $scope.region_name = res.data.region_name;
             $scope.country = res.data.country_name;
@@ -76,7 +76,7 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
     };
     $scope.searchIP();
     $scope.deleteMarker = function (index) {
-        console.log("deleted marker with index "+ index);
+        /*console.log("deleted marker with index "+ index);*/
         $scope.markers.splice(index, 1);            //deleting marker
         $scope.paths.p1.latlngs.splice(index, 1);   //deleting path
         (function changeMarkerNum() {               //changing numbers of all markers more then deleted
@@ -87,6 +87,9 @@ app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
     };
     $scope.showTable = function () {                 //hiding table with data about markers if there no markers
         return $scope.markers.length>0
+    };
+    $scope.sendToServer = function () {
+        $http.post('http://example.com/', $scope.markers); //data sends to server here
     }
 
 }]);
